@@ -5,6 +5,6 @@ This R package is for exact sampling of the first passage event of a stable subo
 
 Currently the package only samples the undershoot and jump at the first pasage across constant level 1.  However, using the package, the entire event, which include the time of the first passage as well as the undershoot and jum, across any constant level or non-constant regular boundary can be easily sampled using the package; see Algorithm 2.1 in Chi (2024).  A short R function is provided below.
 
-To sample `n`
+To sample `n` first passage events aross constant level 1 by a "standard" stable subordinator of index `$\alpha$` 
 
 
