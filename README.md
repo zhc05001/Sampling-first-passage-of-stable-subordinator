@@ -29,4 +29,6 @@ source("ar-fp.R")
 X=sample.fp(n, alpha, b, diff.b, linv.B, M)
 ```
 `X` is a list of the following variables, each being an array of length `n`.  The ones directly related to the first passage event are
-- **`X$t`**, `X$log.y`, and `X$y`.
+- **`X$t`:** time $`\tau`$ of the first passage event
+- **`X$y`:** the value such that give $`\tau=t`$, $`S_{t-}=b(t)(1+y)^{1-1/\alpha}`$ is the undershoot of the first passage, i.e., the value of the subordinator just before the passage.  Given the undershoot, the jump can be sampled by $`[b(t)-S_{t-}] V^{-1/\alpha}`$, where $`V`$ is uniformly distributed on $(0,1)$.  Note that for the above barrier, the subordinator may cross it by creeping, i.e., moving continously instead of jumping, the value of $`y`$ can be zero.
+- **`X$log.y`:** the logarithm of `X$y`.
