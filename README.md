@@ -3,9 +3,7 @@ This R package is for exact sampling of the first passage event of a stable subo
 
 - Chi, Z. (2024). *Complexity of exact sampling of the first passage of a stable subordinator*. [arXiv:xxxxx](http://merlot.stat.uconn.edu/~zhc05001/)
 
-Currently the package only samples a certain transformation of the undershoot at the first pasage across constant level 1.  However, using the package, the entire event across any constant level or non-constant regular boundary can be easily sampled using the package; see Algorithm 2.1 in Chi (2024).  A short R function is provided below.
-
-To sample `n` first passage events aross constant level 1 by a "standard" stable subordinator of index `alpha`, use the function `sample.fp` in the file `ar-fp.R` as follows
+Let $`b(t)>0`$ be a non-increasing differentable function of $`t>0`$.  To sample $`n`$ first passage events aross $`b(t)`$ a "standard" stable subordinator of index $`\alpha`$, use the function `sample.fp` in the file `ar-fp.R` as follows
 ```R
 source("ar-fp.R")
 X=sample.fp(n, alpha)
