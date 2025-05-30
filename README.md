@@ -3,7 +3,13 @@ This R package is for exact sampling of the first passage event of a stable subo
 
 - Chi, Z. (2024). *Complexity of exact sampling of the first passage of a stable subordinator*. [arXiv:xxxxx](http://merlot.stat.uconn.edu/~zhc05001/)
 
-Let $`b(t)>0`$ be a non-increasing differentable function of $`t>0`$.  To sample $`n`$ first passage events aross $`b(t)`$ a "standard" stable subordinator of index $`\alpha`$, use the function `sample.fp` in the file `ar-fp.R` as follows
+Let $`b(t)>0`$ be a non-increasing differentable function of $`t>0`$.  To sample $`n`$ first passage events aross $`b(t)`$ a "standard" stable subordinator of index $`\alpha`$, use the function `sample.fp` in the file `ar-fp.R` as follows.
+
+First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\log [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  For example, if
+```LaTeX
+$`b(t) = (C - t^{1/\alpha})_+`$,
+```
+where $`C>0`$ is a parameter that you want to be able to adjust, then 
 ```R
 source("ar-fp.R")
 X=sample.fp(n, alpha)
