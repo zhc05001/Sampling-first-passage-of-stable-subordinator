@@ -8,17 +8,18 @@ Let $b(t)>0$ be a non-increasing differentable function of $t>0$.  To sample $n$
 First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\log [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  The general format is as follows
 ```R
     b <- function(t, alpha, par1, par2, ...) {
-        ## t and alpha must be the first two in put arguments, par1, par2, ... are additional parameters if needed
-        ## t should be allowed to be an array of positive numbers
+        ## t and alpha must be the first two input arguments, par1, par2, ... are additional parameters if needed
+        ## the definition should allow t to be an array of positive numbers
         ...
     }
     diff.b <- functon(t, alpha, par1, par2, ...) {
         ## derivatives of b
+        ## same requirements on the input arguments as function b
         ...
     }
     linv.B <- function(s, alpha, par1, par2, ...) {
         ## logarithm of the inverse of B
-        ## s should be allowed to be an array of numbers
+        ## the definitin should allow s to be an array of numbers
         ...
     }
 ```
