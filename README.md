@@ -63,12 +63,12 @@ X=sample.fp(1000, alpha, b1, diff.b1, linv.B1, 100)
 If you find this code useful, please cite it using the following BibTeX entry:
 ```bibtex
 @software{Zhu_Computing_the_maximal_2024,
-author = {Chi, Zhiyi},
-month = June,
-title = {Exact sampling of the first passage of a stable subordinator},
-url = {https://github.com/zhc05001/Exact-sampling-of-the-first-passage-of-a-stable-subordinator},
-version = {1.0.0},
-year = {2025}
+    author = {Chi, Zhiyi},
+     month = June,
+     title = {Exact sampling of the first passage of a stable subordinator},
+       url = {https://github.com/zhc05001/Exact-sampling-of-the-first-passage-of-a-stable-subordinator},
+   version = {1.0.0},
+      year = 2025,
 }
 ```
 
