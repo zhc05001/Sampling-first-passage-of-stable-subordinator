@@ -5,9 +5,24 @@ This R package is for exact sampling of the first passage event of a stable subo
 
 Let $`b(t)>0`$ be a non-increasing differentable function of $`t>0`$.  To sample $`n`$ first passage events aross $`b(t)`$ a "standard" stable subordinator of index $`\alpha`$, use the function `sample.fp` in the file `ar-fp.R` as follows.
 
-First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\log [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  For example, if $`b(t) = (C - t^{1/\alpha})_+`$, where $`C>0`$ is a parameter that you want to be able to adjust, then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<C^\alpha\}`$ and $`B^{-1}(s) = [C/(s+1)]^\alpha`$.
-
+First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\log [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  For example, suppose $`b(t) = (M - t^{1/\alpha})_+`$, where $`M>0`$ is a parameter that you want to be able to adjust, then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $`B^{-1}(s) = [M/(s+1)]^\alpha`$.  
 ```R
+    b <- function(t,a,M) {
+        x=rep(0,length(t));
+        I = which(t<M^a); x[I]=M-t[I]^(1/a);
+        x
+    }
+    diff.b <- function(t,a,M) {
+        x=rep(0,length(t));
+        I = which(t<M^a); x[I]=-(1/a)*t[I]^(1/a-1);
+        x
+    }
+    linv.B <- function(s,a,M) { a*(log(M) - log1p(s)) }  ## log1p(s) = log(1+s).
+```
+aaa
+```
+
+
 source("ar-fp.R")
 X=sample.fp(n, alpha)
 ```
