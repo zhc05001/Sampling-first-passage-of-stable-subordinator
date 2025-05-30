@@ -33,26 +33,26 @@ X=sample.fp(n, alpha, b, diff.b, linv.B, par1, par2, ...)
 - **`X$log.y`:** the logarithm of `X$y`.  The function `sample.fp` actually first samples the logorithm of $`y`$, and then exponentiates the result to get $`y`$.  The reason for this is that when $`\alpha`$ is close to 1, the sample value of $`y`$ is often extremely small, causing numerical issues.  On the other hand, it is numerically more stable to sample the logirthm of $`y`$.
 
 ### Example
-Suppose $`b(t) = M - t^{1/\alpha})`$ if $`0\leq t\leq M^\alpha`$ and 0 otherwise, where $M>0$ is a parameter that you want to be able to adjust, then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $B^{-1}(s) = [M/(s+1)]^\alpha$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
+Suppose $`b(t) = M - t^{1/\alpha}`$ if $`0\leq t\leq M^\alpha`$ and 0 otherwise, where $M>0$ is a parameter.  Then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $B^{-1}(s) = [M/(s+1)]^\alpha$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
 ```R
-    b <- function(t,alpha,M) {
+    b1 <- function(t,alpha,M) {  ## 1st barrier function to be tested.
         x=rep(0,length(t))
         I = which(t<M^alpha)
         x[I]=M-t[I]^(1/alpha)
         x
     }
-    diff.b <- function(t,alpha,M) {
+    diff.b1 <- function(t,alpha,M) {
         x=rep(0,length(t))
         I = which(t<M^alpha)
         x[I]=-(1/alpha)*t[I]^(1/alpha-1)
         x
     }
-    linv.B <- function(s,alpha,M) {
+    linv.B1 <- function(s,alpha,M) {
         alpha*(log(M) - log1p(s))   ## log1p(s) = log(1+s)
     } 
 ```
 After the functions are defined, the first passage events can be done as follows
 ```
 source("ar-fp.R")
-X=sample.fp(n, alpha, b, diff.b, linv.B, M)
+X=sample.fp(1000, alpha, b1, diff.b1, linv.B1, 100)
 ```
