@@ -5,7 +5,7 @@ This R package is for exact sampling of the first passage event of a stable subo
 
 Let $b(t)>0$ be a non-increasing differentable function of $t>0$.  To sample $n$ first passage events aross $`b(t)`$ a "standard" stable subordinator of index $`\alpha`$, use the function `sample.fp` in the file `ar-fp.R` as follows.
 
-First, supply the definitions of $b(t)$, its derivative $b'(t)$, and $`\log [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  For example, suppose $`b(t) = (M - t^{1/\alpha})_+`$, where $`M>0`$ is a parameter that you want to be able to adjust, then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $`B^{-1}(s) = [M/(s+1)]^\alpha`$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
+First, supply the definitions of $b(t)$, its derivative $b'(t)$, and $\log [B^{-1}(s)]$, where $B(t)=t^{-1/\alpha} b(t)$.  For example, suppose $b(t) = (M - t^{1/\alpha})_+$, where $M>0$ is a parameter that you want to be able to adjust, then $b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}$ and $B^{-1}(s) = [M/(s+1)]^\alpha$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
 ```R
     b <- function(t,a,M) {  ## t can be an array of positive numbers
         x=rep(0,length(t))
