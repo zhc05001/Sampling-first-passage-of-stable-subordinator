@@ -1,7 +1,7 @@
 # Exact sampling of the first passage of a stable subordinator
 This R package is for exact sampling of the first passage event of a stable subordinator across a boundary.  The algorithms implemented in the package are developed in 
 
-- Chi, Z. (2024). *Complexity of exact sampling of the first passage of a stable subordinator*. [arXiv:xxxxx](http://merlot.stat.uconn.edu/~zhc05001/)
+- Chi, Z. (2025). *Complexity of exact sampling of the first passage of a stable subordinator*. [arXiv:xxxxx](http://merlot.stat.uconn.edu/~zhc05001/)
 
 Let $b(t)>0$ be a non-increasing differentable function of $t>0$.  To sample $n$ first passage events aross $`b(t)`$ by a "standard" stable subordinator $`S_t`$ of index $`0<\alpha<1`$, whose moment generating function is $`E(e^{-\lambda S_t}) = \exp(-t\lambda^\alpha)`$, $`t>0, \lambda>0`$, proceed as follows.
 
