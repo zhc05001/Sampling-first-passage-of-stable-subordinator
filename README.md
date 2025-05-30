@@ -59,8 +59,8 @@ After the functions are defined, the first passage events can be done as follows
 source("ar-fp.R")
 X=sample.fp(1000, alpha, b1, diff.b1, linv.B1, 100)
 ```
-### CitationIf you find this code useful, please cite it using the following BibTeX entry:
-
+### Citation
+If you find this code useful, please cite it using the following BibTeX entry:
 ```bibtex
 @software{Zhu_Computing_the_maximal_2024,
 author = {Chi, Zhiyi},
