@@ -5,22 +5,50 @@ This R package is for exact sampling of the first passage event of a stable subo
 
 Let $b(t)>0$ be a non-increasing differentable function of $t>0$.  To sample $n$ first passage events aross $`b(t)`$ a "standard" stable subordinator of index $`\alpha`$, use the function `sample.fp` in the file `ar-fp.R` as follows.
 
-First, supply the definitions of $b(t)$, its derivative $b'(t)$, and $\log [B^{-1}(s)]$, where $B(t)=t^{-1/\alpha} b(t)$.  For example, suppose $`b(t) = (M - t^{1/\alpha})_+`$, where $M>0$ is a parameter that you want to be able to adjust, then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $B^{-1}(s) = [M/(s+1)]^\alpha$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
+First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\log [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  The general format is as follows
 ```R
-    b <- function(t,a,M) {  ## t can be an array of positive numbers
+    b <- function(t, alpha, par1, par2, ...) {
+        ## t and alpha must be the first two in put arguments, par1, par2, ... are additional parameters if needed
+        ## t should be allowed to be an array of positive numbers
+        ...
+    }
+    diff.b <- functon(t, alpha, par1, par2, ...) {
+        ## derivatives of b
+        ...
+    }
+    linv.B <- function(s, alpha, par1, par2, ...) {
+        ## logarithm of the inverse of B
+        ## s should be allowed to be an array of numbers
+        ...
+    }
+```
+After the functions are defined, the first passage events can be sampled as follows
+```
+source("ar-fp.R")
+X=sample.fp(n, alpha, b, diff.b, linv.B, par1, par2, ...)
+```
+`X` is a list of the following variables, each being an array of length `n`.  The ones directly related to the first passage event are
+- **`X$t`:** time $`\tau`$ of the first passage event
+- **`X$y`:** the value such that give $`\tau=t`$, $`S_{t-}=b(t)(1+y)^{1-1/\alpha}`$ is the undershoot of the first passage, i.e., the value of the subordinator just before the passage.  Given the undershoot, the jump can be sampled by $`[b(t)-S_{t-}] V^{-1/\alpha}`$, where $`V`$ is uniformly distributed on $(0,1)$.  Note that for the above barrier, the subordinator may cross it by creeping, i.e., moving continously instead of jumping.  In the case of creeping, the value of $`y`$ is zero.
+- **`X$log.y`:** the logarithm of `X$y`.  The function `sample.fp` actually first samples the logorithm of $`y`$, and then exponentiates the result to get $`y`$.  The reason for this is that when $`\alpha`$ is close to 1, the sample value of $`y`$ is often extremely small, causing numerical issues.  On the other hand, it is numerically more stable to sample the logirthm of $`y`$.
+
+##Example## 
+Suppose $`b(t) = (M - t^{1/\alpha})_+`$, where $M>0$ is a parameter that you want to be able to adjust, then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $B^{-1}(s) = [M/(s+1)]^\alpha$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
+```R
+    b <- function(t,alpha,M) {
         x=rep(0,length(t))
-        I = which(t<M^a)
-        x[I]=M-t[I]^(1/a)
+        I = which(t<M^alpha)
+        x[I]=M-t[I]^(1/alpha)
         x
     }
-    diff.b <- function(t,a,M) {
+    diff.b <- function(t,alpha,M) {
         x=rep(0,length(t))
-        I = which(t<M^a)
-        x[I]=-(1/a)*t[I]^(1/a-1)
+        I = which(t<M^alpha)
+        x[I]=-(1/alpha)*t[I]^(1/alpha-1)
         x
     }
-    linv.B <- function(s,a,M) { ## s can be an array of positive numbers
-        a*(log(M) - log1p(s))   ## log1p(s) = log(1+s)
+    linv.B <- function(s,alpha,M) {
+        alpha*(log(M) - log1p(s))   ## log1p(s) = log(1+s)
     } 
 ```
 After the functions are defined, the first passage events can be done as follows
@@ -28,7 +56,3 @@ After the functions are defined, the first passage events can be done as follows
 source("ar-fp.R")
 X=sample.fp(n, alpha, b, diff.b, linv.B, M)
 ```
-`X` is a list of the following variables, each being an array of length `n`.  The ones directly related to the first passage event are
-- **`X$t`:** time $`\tau`$ of the first passage event
-- **`X$y`:** the value such that give $`\tau=t`$, $`S_{t-}=b(t)(1+y)^{1-1/\alpha}`$ is the undershoot of the first passage, i.e., the value of the subordinator just before the passage.  Given the undershoot, the jump can be sampled by $`[b(t)-S_{t-}] V^{-1/\alpha}`$, where $`V`$ is uniformly distributed on $(0,1)$.  Note that for the above barrier, the subordinator may cross it by creeping, i.e., moving continously instead of jumping.  In the case of creeping, the value of $`y`$ is zero.
-- **`X$log.y`:** the logarithm of `X$y`.  The function `sample.fp` actually first samples the logorithm of $`y`$, and then exponentiates the result to get $`y`$.  The reason for this is that when $`\alpha`$ is close to 1, the sample value of $`y`$ is often extremely small, causing numerical issues.  On the other hand, it is numerically more stable to sample the logirthm of $`y`$.
