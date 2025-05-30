@@ -9,7 +9,7 @@ First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\log 
 ```R
     b <- function(t, alpha, par1, par2, ...) {
         ## t and alpha must be the first two input arguments, par1, par2, ... are additional parameters if needed
-        ## there can be zero number of additional parameters, so the only input arguments are t and alpha
+        ## there can be zero number of additional parameters, so that the only input arguments are t and alpha
         ## the definition should allow t to be an array of positive numbers
         ...
     }
