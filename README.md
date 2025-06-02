@@ -62,7 +62,6 @@ X=sample.fp(1000, 0.9, b1, diff.b1, linv.B1, 100)
 
 `X` also has the following named items, which store sample valuse of intermediate random variables.
 - **`z`:** the value of a random variable dentoed $`z`$ in Chi (2025).  It is the first random variable to be sampled by `sample.fp`.  Given the value of $`z`$, the time $`\tau`$ of the first passage is a determined by $`\tau = B^{-1}(s)`$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
-
 - **`log.z`:** the logarithm of $`z`$
 
 - **`theta`:** given the value of $`z`$, instead of being sampled along, $`y`$ is jointly sampled with another random variable $`\theta`$ from a bivariate p.d.f. $`\chi_{\alpha,z}(y,\theta)$.  Note that in the case of creeping, $`\theta`$ is not defined.  It is known that given $`\tau=t`$, i.e., the first passage occurs at time $`t`$, the probabily that the subordinator croesses the boundary $`b(t)`$ by creeping is $`-b'(t)/[-b'(t) + b(t)/(\alpha t)]`$.
