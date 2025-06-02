@@ -61,7 +61,7 @@ X=sample.fp(1000, 0.9, b1, diff.b1, linv.B1, 100)
 ```
 
 `X` also has the following named items, which store sample valuse of intermediate random variables.
-- **`z`:** the value of a random variable dentoed $`z`$ in Chi (2025).  It is the first random variable to be sampled by `sample.fp`.  Given the value of $`z`$, the time $`\tau`$ of the first passage is a determined by $`\tau = B^{-1}(s)`$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
+- **`z`:** the value of a random variable $`z`$.  It is the first random variable to be sampled by `sample.fp`.  Given the value of $`z`$, the time $`\tau`$ of the first passage is a determined by $`\tau = B^{-1}(s)`$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
 - **`log.z`:** the logarithm of $`z`$
 
 - **`theta`:** given the value of $`z`$, instead of being sampled along, $`y`$ is jointly sampled with another random variable $`\theta`$ from a bivariate distribution parameterized by $`\alpha`$ and $`z`$.  In the case of creeping, $`\theta`$ is not defined.  It is known that if the first passage occurs at time $`t`$, then the probabily that the subordinator crosses the boundary $`b(t)`$ by creeping is $`-b'(t)/[-b'(t) + b(t)/(\alpha t)].`$ The bulk of the package consists of functions to sample $`(y,\theta)`$.  The package contains three functions to sample from the bivariate p.d.f. for different regions of $`(\alpha,z)`$.  They are `sample.chi.alpha.z.3.1`, `sample.chi.alpha.z.3.2`, and `sample.chi.alpha.z.5.1`, which are named after the algorithms in Chi (2025) to sample from the normalized version of a bivariate function $`\chi_{\alpha,z}(y,\theta)`$.
