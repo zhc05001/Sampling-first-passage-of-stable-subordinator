@@ -30,12 +30,13 @@ After the functions are defined, the first passage events can be sampled as foll
 source("ar-fp.R")
 X=sample.fp(n, alpha, b, diff.b, linv.B, par1, par2, ...)
 ```
-`X` is a list of items, each being an array of length `n`.  The ones directly related to the first passage event are
-- **`X$t`:** time $`\tau`$ of the first passage event
-- **`X$y`:** the value such that give $`\tau=t`$, $`b(t)(1+y)^{1-1/\alpha}`$ is the undershoot of the first passage, i.e., the value $`S_{t-}`$ of the subordinator just before the passage.  Given the undershoot, the jump of the subordinator at the first passage can be sampled by $`[b(t)-S_{t-}] V^{-1/\alpha}`$, where $`V`$ is uniformly distributed on $(0,1)$.  Note that for the above barrier, the subordinator may cross it by creeping, i.e., moving continously instead of jumping.  In the case of creeping, the value of $`y`$ is zero and $`S_{t-} = S_t = b(t)`$.
-- **`X$log.y`:** the logarithm of `X$y`.  The function `sample.fp` actually first samples $`\ln y`$, and then exponentiates the result to get $`y`$.  The reason for choosing this approach is that when $`\alpha`$ is close to 1, the sample value of $`y`$ is often extremely small, causing numerical issues.  In contrast, $`\ln y`$ is more numerically stable to sample.
+`X` is a list of named items, each being an array of length `n`.  The ones directly related to the first passage event are
+- **`t`:** time $`\tau`$ of the first passage event
+- **`y`:** the value such that give $`\tau=t`$, $`b(t)(1+y)^{1-1/\alpha}`$ is the undershoot of the first passage, i.e., the value $`S_{t-}`$ of the subordinator just before the passage.  Given the undershoot, the jump of the subordinator at the first passage can be sampled by $`[b(t)-S_{t-}] V^{-1/\alpha}`$, where $`V`$ is uniformly distributed on $(0,1)$.  Note that for the above barrier, the subordinator may cross it by creeping, i.e., moving continously instead of jumping.  In the case of creeping, the value of $`y`$ is zero and $`S_{t-} = S_t = b(t)`$.
+- **`log.y`:** the logarithm of `X$y`.  The function `sample.fp` actually samples $`\ln y`$, and then exponentiates the result to get $`y`$.  The reason for choosing this approach is that when $`\alpha`$ is close to 1, the sample value of $`y`$ is often extremely small, causing numerical issues.  In contrast, $`\ln y`$ is more numerically stable to sample.
 
-`X` also has the following items: `X$z`, `X$log.z`, and `X$theta`.  They store the sample valuse of intermediate random variables.
+`X` also has the following named items, which store sample valuse of intermediate random variables.
+- **`z`** the value of a random variable dentoed $`z`$ in Chi (2025).  It is the first random variable to be sampled by `sample.fp`.  The time $`\tau`$ of the first passage is a deterministic function of $`z`$: $`\tau = B^{-1}(s)$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
 
 ### Example
 Suppose $`b(t) = M - t^{1/\alpha}`$ if $`0\leq t\leq M^\alpha`$ and 0 otherwise, where $M>0$ is a parameter.  Then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $B^{-1}(s) = [M/(s+1)]^\alpha$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
