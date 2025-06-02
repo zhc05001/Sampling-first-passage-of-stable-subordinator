@@ -36,7 +36,7 @@ X=sample.fp(n, alpha, b, diff.b, linv.B, par1, par2, ...)
 - **`log.y`:** the logarithm of `X$y`.  The function `sample.fp` actually samples $`\ln y`$, and then exponentiates the result to get $`y`$.  The reason for choosing this approach is that when $`\alpha`$ is close to 1, the sample value of $`y`$ is often extremely small, causing numerical issues.  In contrast, $`\ln y`$ is more numerically stable to sample.
 
 `X` also has the following named items, which store sample valuse of intermediate random variables.
-- **`z`** the value of a random variable dentoed $`z`$ in Chi (2025).  It is the first random variable to be sampled by `sample.fp`.  The time $`\tau`$ of the first passage is a deterministic function of $`z`$: $`\tau = B^{-1}(s)$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
+- **`z`** the value of a random variable dentoed $`z`$ in Chi (2025).  It is the first random variable to be sampled by `sample.fp`.  The time $`\tau`$ of the first passage is a deterministic function of $`z`$: $`\tau = B^{-1}(s)`$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
 
 ### Example
 Suppose $`b(t) = M - t^{1/\alpha}`$ if $`0\leq t\leq M^\alpha`$ and 0 otherwise, where $M>0$ is a parameter.  Then $`b'(t) = -(1/\alpha) t^{1/\alpha-1} I\{t<M^\alpha\}`$ and $B^{-1}(s) = [M/(s+1)]^\alpha$.  To allow vectorized computation, the following R code can be used.  Note that the definition of $`\log B^{-1}(s)`$ instead of $`B^{-1}(s)`$ has to be supplied.
