@@ -5,7 +5,7 @@ This R package is for exact sampling of the first passage event of a stable subo
 
 Let $b(t)>0$ be a non-increasing differentable function of $t>0$.  To sample $n$ first passage events aross $`b(t)`$ by a "standard" stable subordinator $`S_t`$ of index $`0<\alpha<1`$, whose moment generating function is
 ```
-$`E(e^{-\lambda S_t}) = \exp(-t\lambda^\alpha)```$, $`t>0, \lambda>0`$
+$`E(e^{-\lambda S_t}) = \exp(-t\lambda^\alpha)$, $`t>0, \lambda>0`$
 ```,
 
  proceed as follows.
