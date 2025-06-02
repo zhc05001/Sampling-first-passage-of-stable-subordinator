@@ -54,7 +54,7 @@ Suppose $`b(t) = M - t^{1/\alpha}`$ if $`0\leq t\leq M^\alpha`$ and 0 otherwise,
         alpha*(log(M) - log1p(s))   ## log1p(s) = log(1+s)
     } 
 ```
-After the functions are defined, the first passage events can be done as follows, where $`n=1000`$ samples are drawn, the index of the subordinator is $`\alpha=0.9`$, and $`M=100`$ in the barrier function,
+After the functions are defined, to sample $`n=1000`$ first passage events of a subordinator with index $`\alpha=0.9`$ across barrier $`b(t) = \max(100 - t^{1/0.9},0)`$,
 ```
 source("ar-fp.R")
 X=sample.fp(1000, 0.9, b1, diff.b1, linv.B1, 100)
