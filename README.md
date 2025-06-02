@@ -71,7 +71,7 @@ If you find this code useful, please cite it using the following BibTeX entry:
 @software{chi:25:github,
     author = {Chi, Zhiyi},
      month = June,
-     title = {Exact sampling of the first passage of a stable subordinator},
+     title = {First passage of stable subordinator},
        url = {https://github.com/zhc05001/Exact-sampling-of-the-first-passage-of-a-stable-subordinator},
    version = {1.0.0},
       year = 2025,
