@@ -68,7 +68,7 @@ X=sample.fp(1000, 0.9, b1, diff.b1, linv.B1, 100)
 ### Citation
 If you find this code useful, please cite it using the following BibTeX entry:
 ```bibtex
-@software{chi:2025:fp,
+@software{chi:25:github,
     author = {Chi, Zhiyi},
      month = June,
      title = {Exact sampling of the first passage of a stable subordinator},
