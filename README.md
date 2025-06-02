@@ -4,11 +4,7 @@ This R package is for exact sampling of the first passage event of a stable subo
 - Chi, Z. (2025). *Complexity of exact sampling of the first passage of a stable subordinator*. [arXiv:xxxxx](http://merlot.stat.uconn.edu/~zhc05001/)
 
 Let $b(t)>0$ be a non-increasing differentable function of $t>0$.  To sample $n$ first passage events aross $`b(t)`$ by a "standard" stable subordinator $`S_t`$ of index $`0<\alpha<1`$, whose moment generating function is
-```
-$`E(e^{-\lambda S_t}) = \exp(-t\lambda^\alpha)`$, $`t>0, \lambda>0`$
-```
-
- proceed as follows.
+$`E(e^{-\lambda S_t}) = \exp(-t\lambda^\alpha)`$, $`t>0`$, $`\lambda>0`$, proceed as follows.
 
 First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\ln [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  The general format is as follows
 ```R
