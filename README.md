@@ -1,5 +1,4 @@
-# Exact sampling of the first passage of a stable subordinator
-This R package is for exact sampling of the first passage event of a stable subordinator across a boundary.  The algorithms implemented in the package are developed in 
+The R package in this project is for exact sampling of the first passage event of a stable subordinator across a boundary.  The algorithms implemented in the package are developed in 
 
 - Chi, Z. (2025). *Complexity of exact sampling of the first passage of a stable subordinator*. [arXiv:xxxxx](http://merlot.stat.uconn.edu/~zhc05001/)
 
@@ -71,8 +70,8 @@ If you find this code useful, please cite it using the following BibTeX entry:
 @software{chi:25:github,
     author = {Chi, Zhiyi},
      month = June,
-     title = {First passage of stable subordinator},
-       url = {https://github.com/zhc05001/Exact-sampling-of-the-first-passage-of-a-stable-subordinator},
+     title = {Sample first passage of stable subordinator},
+       url = {https://github.com/zhc05001/Sampling-first-passage-of-stable-subordinator},
    version = {1.0.0},
       year = 2025,
 }
