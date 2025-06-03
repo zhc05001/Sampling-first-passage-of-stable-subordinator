@@ -8,9 +8,9 @@ $`E(e^{-\lambda S_t}) = \exp(-t\lambda^\alpha)`$, $`t>0`$, $`\lambda>0`$, procee
 First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\ln [B^{-1}(s)]`$, where $`B(t)=t^{-1/\alpha} b(t)`$.  The general format is as follows
 ```R
     b <- function(t, alpha, par1, par2, ...) {
-        ## t and alpha must be the first two input arguments, par1, par2, ... are additional parameters if needed
-        ## there can be zero number of additional parameters, so that the only input arguments are t and alpha
-        ## the definition should allow t to be an array of positive numbers
+        ## t and alpha must be the first two input arguments, par1, par2, ... are additional
+        ## parameters
+        ## The function has to allow t to be an array of positive numbers
         ...
     }
     diff.b <- functon(t, alpha, par1, par2, ...) {
@@ -20,7 +20,7 @@ First, supply the definitions of $`b(t)`$, its derivative $`b'(t)`$, and $`\ln [
     }
     linv.B <- function(s, alpha, par1, par2, ...) {
         ## logarithm of the inverse of B
-        ## the definitin should allow s to be an array of numbers
+        ## The function has to allow s to be an array of numbers
         ...
     }
 ```
