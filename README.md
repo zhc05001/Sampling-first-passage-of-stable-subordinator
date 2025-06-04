@@ -30,8 +30,8 @@ source("ar-fp.R")
 X=sample.fp(n, alpha, b, diff.b, linv.B, par1, par2, ...)
 ```
 `X` is a list of named items, each being an array of length `n`.  The ones directly related to the first passage event are
-- **`t`:** time $`\tau`$ of the first passage event
-- **`y`:** the value such that give $`\tau=t`$, $`b(t)(1+y)^{1-1/\alpha}`$ is the undershoot of the first passage, i.e., the value $`S_{t-}`$ of the subordinator just before the passage.  Given the undershoot, the jump of the subordinator at the first passage can be sampled by $`[b(t)-S_{t-}] V^{-1/\alpha}`$, where $`V`$ is uniformly distributed on $(0,1)$.  Note that if $`b'(t)<0`$, the subordinator may cross the boundary by creeping, i.e., moving continously instead of jumping.  It is known that if the first passage occurs at time $`t`$, then the probabily that the subordinator creeps across $`b(t)`$ is $`-b'(t)/[-b'(t) + b(t)/(\alpha t)].`$  In the case of creeping, the value of $`y`$ is zero and $`S_{t-} = S_t = b(t)`$.
+- **`t`:** the time of the first passage event
+- **`y`:** the value such that give the first passage occurs at time $`t`$, $`b(t)(1+y)^{1-1/\alpha}`$ is the undershoot of the first passage, i.e., the value $`S_{t-}`$ of the subordinator just before the passage.  Given the undershoot, the jump of the subordinator at the first passage can be sampled by $`[b(t)-S_{t-}] V^{-1/\alpha}`$, where $`V`$ is uniformly distributed on $(0,1)$.  Note that if $`b'(t)<0`$, the subordinator may cross the boundary by creeping, i.e., moving continously instead of jumping.  It is known that given the first passage occurs at time $`t`$, the conditional probabily that the subordinator creeps across $`b(t)`$ is $`-b'(t)/[-b'(t) + b(t)/(\alpha t)].`$  In the case of creeping, the value of $`y`$ is zero and $`S_{t-} = S_t = b(t)`$.
 - **`log.y`:** the logarithm of `y`.  The function `sample.fp` actually samples $`\ln y`$, and then exponentiates the result to get $`y`$.  The reason for choosing this approach is that when $`\alpha`$ is close to 1, the sample value of $`y`$ is often extremely small, causing numerical issues.  In contrast, $`\ln y`$ is more numerically stable to sample.
 
 ### Example
@@ -60,7 +60,7 @@ X=sample.fp(1000, 0.9, b1, diff.b1, linv.B1, 100)
 ```
 
 `X` also has the following named items, which store sample valuse of intermediate random variables.
-- **`z`:** the value of a random variable denoted $`z`$.  Given the value of $`z`$, the time $`\tau`$ of the first passage is determined by $`\tau = B^{-1}(s)`$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
+- **`z`:** the value of a random variable denoted $`z`$.  Given the value of $`z`$, the time of the first passage is equal to $`B^{-1}(s)`$, where $`s = \alpha[(1-\alpha)/z]^{1/\alpha-1}`$.
 - **`log.z`:** the logarithm of $`z`$
 - **`theta`:** Given the value of $`z`$, instead of being sampled along, $`y`$ is jointly sampled with another random variable $`\theta`$ from a bivariate distribution parameterized by $`\alpha`$ and $`z`$.  In the case of creeping, $`\theta`$ is not defined.  The hard part is how to sample $`(y,\theta)`$ given that the subordinator jumps across $`b(t)`$.  The bulk of the package is for this task.  The package contains three functions to sample from the bivariate p.d.f. for different regions of $`(\alpha,z)`$.  They are `sample.chi.alpha.z.3.1`, `sample.chi.alpha.z.3.2`, and `sample.chi.alpha.z.5.1`, which are named after the algorithms in Chi (2025) to sample from a bivariate p.d.f. which is in proportin to a certain function $`\chi_{\alpha,z}(y,\theta)`$.
 
