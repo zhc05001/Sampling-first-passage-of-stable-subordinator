@@ -1,4 +1,4 @@
-The R code in this project is for exact sampling of the first passage event of a stable subordinator across a boundary.  The algorithms implemented in the package are developed in 
+The R code in this project is for exact sampling of the first passage event of a stable subordinator across a boundary.  The algorithms implemented are developed in 
 
 - Chi, Z. (2025). [*Complexity of exact sampling of the first passage of a stable subordinator*](https://arxiv.org/abs/2506.03047/).
 
